@@ -1,4 +1,4 @@
-name: twasol_ai
+name: twasol_clean
 description: Realtime chat app (groups + DMs) using Flutter + Firebase with FCM notifications & contacts sync.
 publish_to: "none"
 

@@ -1,16 +1,24 @@
-# flutter_application_1
+# twasol-clean
 
-A new Flutter project.
+[![CI](https://github.com/Almefta/twasol-clean/actions/workflows/flutter-ci.yml/badge.svg)](https://github.com/Almefta/twasol-clean/actions/workflows/flutter-ci.yml)
 
-## Getting Started
+تطبيق Flutter (دردشة/إشعارات/… حسب وصف مشروعك). هذا المستودع مهيّأ للعمل على فروع `dev` و `main` مع CI.
 
-This project is a starting point for a Flutter application.
+## Dev notes
+- أول تعديل تجريبي على فرع `dev`.
+- الفرع الافتراضي للتطوير: `dev`، والدمج يتم عبر Pull Request إلى `main`.
 
-A few resources to get you started if this is your first Flutter project:
+## الميزات (مثال)
+- تسجيل الدخول والمستخدمين (feature: `auth`)
+- المحادثات (feature: `chat`)
+- الإشعارات (FCM)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## المتطلبات
+- Flutter SDK (3.x فأعلى)
+- Dart SDK مرفق مع Flutter
+- Android Studio/Xcode للأجهزة الحقيقية أو المحاكيات
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## البدء
+```bash
+flutter pub get
+flutter run
