@@ -1,0 +1,51 @@
+// lib/contacts_sync.dart
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
+import 'package:phone_numbers_parser/phone_numbers_parser.dart';
+
+class ContactsSync {
+  /// اضبط بلدك الافتراضي (مثلاً "SA" أو "YE")
+  static const defaultIso = 'SA';
+
+  static Future<List<Map<String, dynamic>>> findAppUsers() async {
+    final ok = await FlutterContacts.requestPermission();
+    if (!ok) return [];
+
+    final contacts = await FlutterContacts.getContacts(withProperties: true);
+    final numbers = <String>{};
+
+    for (final c in contacts) {
+      for (final p in c.phones) {
+        final raw = p.number ?? '';
+        try {
+          final parsed = PhoneNumber.parse(raw, callerCountry: defaultIso)
+              .internationalE164; // +9665xxxxxxxx
+          numbers.add(parsed);
+        } catch (_) {}
+      }
+    }
+
+    if (numbers.isEmpty) return [];
+
+    // Firestore whereIn يقبل كحد أقصى 10 قيم – نقسّم دفعات
+    final chunks = <List<String>>[];
+    final list = numbers.toList();
+    for (var i = 0; i < list.length; i += 10) {
+      chunks.add(list.sublist(i, i + 10 > list.length ? list.length : i + 10));
+    }
+
+    final results = <Map<String, dynamic>>[];
+    for (final chunk in chunks) {
+      final q = await FirebaseFirestore.instance
+          .collection('users')
+          .where('phoneE164', whereIn: chunk)
+          .get();
+      for (final d in q.docs) {
+        final m = d.data();
+        m['uid'] = d.id;
+        results.add(m);
+      }
+    }
+    return results;
+  }
+}
