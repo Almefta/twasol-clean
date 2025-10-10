@@ -1,21 +1,103 @@
-﻿# Flutter & Dart
+# -----------------------
+# Flutter / Dart
+# -----------------------
 .dart_tool/
 .packages
-.pub-cache/
+.flutter-plugins
+.flutter-plugins-dependencies
+.flutter-versions
+.flutter-assembly
 build/
 coverage/
-# IDE
+
+# (احتفظ بـ pubspec.lock لتثبيت الإصدارات)
+# !pubspec.lock
+
+# -----------------------
+# IDEs
+# -----------------------
 .idea/
 .vscode/
-# Android/iOS
+*.iml
+*.ipr
+*.iws
+
+# -----------------------
+# OS Junk
+# -----------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------
+# Android
+# -----------------------
 android/.gradle/
 android/local.properties
+android/app/build/
+# (اختياري) تجاهل google-services.json إن لا تريد رفعه
+# android/app/google-services.json
+**/GeneratedPluginRegistrant.java
+
+# -----------------------
+# iOS
+# -----------------------
 ios/Pods/
-# Node (لو عندك)
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+ios/Runner.xcworkspace/
+**/*.xcuserstate
+**/*.xcworkspace/xcuserdata/
+**/*.xcodeproj/xcuserdata/
+**/*.xcuserdatad/
+
+# -----------------------
+# macOS
+# -----------------------
+macos/Flutter/ephemeral/
+macos/Pods/
+macos/Runner.xcworkspace/
+
+# -----------------------
+# Windows
+# -----------------------
+windows/flutter/ephemeral/
+
+# -----------------------
+# Linux
+# -----------------------
+linux/flutter/ephemeral/
+
+# -----------------------
+# Web
+# -----------------------
+# (لا شيء خاص — مجلد build/ مغطّى)
+
+# -----------------------
+# Node (إن وُجد)
+# -----------------------
 node_modules/
-# Secrets
+
+# -----------------------
+# Secrets / Keys / Env
+# -----------------------
 .env
-*.jks
+.env.*
+*.pem
+*.p12
+*.p8
 *.keystore
+*.jks
+*.key
 *serviceAccountKey*.json
 **/serviceAccountKey.json
+# Firebase: firebase_options.dart آمن للرفع (لا تُضِفه هنا)
+# (اختياري) تجاهل ملفات GoogleService-Info إن رغبت
+# ios/Runner/GoogleService-Info.plist
+# macos/Runner/GoogleService-Info.plist
+
+# -----------------------
+# Logs / Temp
+# -----------------------
+*.log
